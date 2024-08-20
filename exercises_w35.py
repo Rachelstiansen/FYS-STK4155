@@ -12,11 +12,13 @@ X[:, 0] = 1; X[:, 1] = x[:, 0]; X[:, 2] = x[:, 0]**2
 
 beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
 ytilde = X @ beta
-fit = np.linalg.lstsq(X, y, rcond=None)[0]
-print(np.shape(ytilde[:, 0]))
+
+# Sorting the values:
+x_sorted = np.sort(x, axis=0)
+ytilde = np.sort(ytilde, axis=0)
 
 plt.scatter(x, y, alpha=0.7, label="Data")
-plt.plot(X[:, 1], ytilde, alpha=0.7, lw=2, color="m", label="Fit")
+plt.plot(x_sorted, ytilde, alpha=0.7, lw=2, color="m", label="Fit")
 plt.legend()
 plt.show()
 
